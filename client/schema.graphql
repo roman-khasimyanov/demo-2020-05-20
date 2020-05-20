@@ -1,0 +1,44 @@
+# The javascript `Date` as string. Type represents date and time as the ISO Date string.
+scalar DateTime
+
+type Mutation {
+  addPost(recipe: PostInput!): Post!
+  rate(rate: RateInput!): Post!
+}
+
+type Post {
+  id: ID!
+  title: String!
+  description: String
+  ratings: [Rate!]!
+  author: User!
+}
+
+input PostInput {
+  title: String!
+  description: String
+}
+
+type Query {
+  post(postId: Int!): Post
+  posts: [Post!]!
+}
+
+type Rate {
+  value: Int!
+  user: User!
+  date: DateTime!
+}
+
+input RateInput {
+  recipeId: ID!
+  value: Int!
+}
+
+type User {
+  id: ID!
+  email: String!
+  nickname: String
+  posts: [Post!]!
+}
+
